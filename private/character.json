@@ -1,0 +1,73 @@
+{
+	characterName: String,
+	playerName: String,
+	homeWorld: String,
+	careerPath: String,
+	rank: String,
+	divination: String,
+	quirk: String,
+	gender: String,
+	build: String,
+	height: String,
+	weight: String,
+	skinColour: String,
+	hairColour: String,
+	eyeColour: String,
+	age: Number,
+	
+	
+	
+	characteristics: {
+		ws: Number,
+		bs: Number,
+		str: Number,
+		t: Number,
+		ag: Number,
+		int: Number,
+		per: Number,
+		wp: Number,
+		fel: Number
+	},
+	
+	basicSkills: [
+		{
+			name: String,
+			value: Number
+		}
+	],
+	
+	advancedSkills: [
+		{
+			name: String,
+			value: Number
+		}
+	],
+	
+	talents: {
+		
+	},
+	
+	psychicPowers: {
+		
+	},
+	
+	xp: {
+		toSpend: Number,
+		advancments: [
+			{
+				name: String,
+				value: Number
+			}
+		]
+	},
+	
+	weapons: {
+		melee: [
+			
+		],
+		
+		missile: [
+			
+		]
+	}	
+}

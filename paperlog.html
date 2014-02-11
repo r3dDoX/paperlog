@@ -1,0 +1,66 @@
+<head>
+	<title>paperlog</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">paperlog</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<h1>Profiles</h1>
+				{{> profile_list}}
+			</div>
+			<div class="col-xs-6">
+				<h1>Weapons</h1>
+				{{> ranged_combat_weapons_list}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				{{> ranged_combat_weapon_form}}
+			</div>
+		</div>
+	</div>
+</body>
+
+<template name="profile_list">
+	{{#each profiles}}
+		<ul>
+			<li>{{charactername}}</li>
+		</ul>
+	{{else}}
+		No profiles yet.
+	{{/each}}
+</template>
+
+<template name="ranged_combat_weapons_list">
+	{{#each rangedCombatWeapons}}
+		<ul>
+			<li>{{name}}</li>
+		</ul>
+	{{else}}
+		No ranged combat weapons yet.
+	{{/each}}
+</template>
+
+<template name="ranged_combat_weapon_form">
+	<form role="form" name="rangedCombatWeapon">
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" name="name" class="form-control" id="rangedCombatWeaponName" value="{{weapon.name}}">
+		</div>
+	</form>
+</template>
