@@ -15,7 +15,15 @@
 	eyeColour: String,
 	age: Number,
 	
+	life: {
+		total: Number,
+		actual: Number
+	}
 	
+	fatePoints: {
+		total: Number,
+		actual: Number
+	}
 	
 	characteristics: {
 		ws: Number,
@@ -43,13 +51,12 @@
 		}
 	],
 	
-	talents: {
-		
-	},
-	
-	psychicPowers: {
-		
-	},
+	talentsTraits: [
+		{
+			name: String,
+			effect: String
+		}
+	],
 	
 	xp: {
 		toSpend: Number,
@@ -63,11 +70,24 @@
 	
 	weapons: {
 		melee: [
-			
+			weapon_id: String,
+			specialRules: String
 		],
 		
 		missile: [
-			
+			weapon_id: String,
+			rounds: Number,
+			specialRules: String
 		]
-	}	
+	},
+	
+	gear: Array.of(String),
+	
+	armor: [
+		{
+			bodyPart: String,
+			type: String,
+			weight: Number
+		}
+	]
 }
