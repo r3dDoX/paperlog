@@ -19,18 +19,9 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-12">
 				<h1>Profiles</h1>
 				{{> profile_list}}
-			</div>
-			<div class="col-xs-6">
-				<h1>Weapons</h1>
-				{{> ranged_combat_weapons_list}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				{{> ranged_combat_weapon_form}}
 			</div>
 		</div>
 	</div>
@@ -44,23 +35,4 @@
 	{{else}}
 		No profiles yet.
 	{{/each}}
-</template>
-
-<template name="ranged_combat_weapons_list">
-	{{#each rangedCombatWeapons}}
-		<ul>
-			<li>{{name}}</li>
-		</ul>
-	{{else}}
-		No ranged combat weapons yet.
-	{{/each}}
-</template>
-
-<template name="ranged_combat_weapon_form">
-	<form role="form" name="rangedCombatWeapon">
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" name="name" class="form-control" id="rangedCombatWeaponName" value="{{weapon.name}}">
-		</div>
-	</form>
 </template>
