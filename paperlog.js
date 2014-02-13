@@ -1,13 +1,42 @@
 Profiles = new Meteor.Collection("profiles");
 
 if (Meteor.isClient) {
-  Template.profile.selectedProfile = function () {
-		var selectedProfile = Profiles.findOne({/* TODO select profile with param */});
 
-		if(selectedProfile) {
-			Session.set('selectedProfile', selectedProfile._id);
+	Template.profiles.availableProfiles = function() {
+		return Profiles.find({}).fetch();
+	}
+
+	Template.profiles.events({
+		'click a': function(event) {
+			var character = Profiles.findOne({characterName: event.target.innerHTML});
+			console.log(character);
+			event.preventDefault;
+			
+			if(character) {
+				Session.set('selectedProfile', character._id);
+			}
 		}
-		
+	});
+
+	Template.createProfile.events({
+		'click button': function(event) {
+			var inputElement = event.target.parentNode.getElementsByTagName('input')[0],
+					characterName = inputElement.value;
+
+			event.preventDefault();
+			inputElement.value = "";
+			inputElement.blur();
+			
+			if(characterName) {
+				Session.set('selectedProfile', 
+					Profiles.insert({characterName: characterName})
+				);
+			}
+		}
+	});
+
+  Template.profile.selectedProfile = function () {
+		var selectedProfile = Profiles.findOne({_id: Session.get('selectedProfile')});
 		return selectedProfile;
   };
 	
