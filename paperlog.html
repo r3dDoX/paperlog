@@ -1,10 +1,13 @@
 <head>
 	<title>paperlog</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body { padding-top: 70px; }
+	</style>
 </head>
 
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -19,15 +22,11 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-md-3">
 				{{> profiles}}
-			</div>
-			<div class="col-xs-6">
 				{{> createProfile}}
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-md-9">
 				{{> profile}}
 			</div>
 		</div>
@@ -35,33 +34,48 @@
 </body>
 
 <template name="profiles">
-	<h3>Available Profiles</h3>
-	{{#each availableProfiles}}
-		<ul>
-			<li><a href="#">{{characterName}}</a></li>
-		</ul>
-	{{/each}}
+	<div class="list-group">
+		{{#each availableProfiles}}
+			<a href="#" class="list-group-item{{#if isSelectedProfile _id}} active{{/if}}">{{characterName}}</a>
+		{{/each}}
+	</div>
 </template>
 
 <template name="createProfile">
-	<form class="form-inline" role="form">
-		<div class="form-group">
-			<h3>Create new profile</h3>
-			<input type="text" class="form-control" placeholder="Character Name" />
-			<button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Add</button>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Character Name" />
+				<span class="input-group-btn">
+					<button class="btn btn-primary" type="button">
+						<span class="glyphicon glyphicon-plus"></span> Add
+					</button>
+				</span>
+			</div>
 		</div>
-	</form>
+	</div>
 </template>
 
 <template name="profile">
 	{{#if selectedProfile}}
-		<h3>Profil {{selectedProfile.characterName}}</h3>
-		<form class="form-inline" role="form">
-			<div class="form-group">
-				<label class="control-label" for="characterName">Character Name</label>
-				<span data-name="characterName">{{selectedProfile.characterName}}</span>
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#">Basics</a>
+			</li>
+			<li>
+				<a href="#">Talents</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane fade in active">
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<label class="control-label" for="characterName">Character Name</label>
+						<span data-name="characterName">{{selectedProfile.characterName}}</span>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
 	{{/if}}
 </template>
 

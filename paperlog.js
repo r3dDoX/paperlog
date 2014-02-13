@@ -6,11 +6,13 @@ if (Meteor.isClient) {
 		return Profiles.find({}).fetch();
 	}
 
+	Handlebars.registerHelper("isSelectedProfile", function(actualId) {
+		return Session.get('selectedProfile') === actualId;
+	});
+
 	Template.profiles.events({
 		'click a': function(event) {
 			var character = Profiles.findOne({characterName: event.target.innerHTML});
-			console.log(character);
-			event.preventDefault;
 			
 			if(character) {
 				Session.set('selectedProfile', character._id);
