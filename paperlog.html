@@ -20,19 +20,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1>Profiles</h1>
-				{{> profile_list}}
+				{{> profile}}
 			</div>
 		</div>
 	</div>
 </body>
 
-<template name="profile_list">
-	{{#each profiles}}
-		<ul>
-			<li>{{charactername}}</li>
-		</ul>
-	{{else}}
-		No profiles yet.
-	{{/each}}
+<template name="profile">
+	{{#if selectedProfile}}
+		<h1>Profil {{selectedProfile.characterName}}</h1>
+	{{/if}}
 </template>

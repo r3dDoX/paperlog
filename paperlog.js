@@ -1,10 +1,9 @@
 Profiles = new Meteor.Collection("profiles");
 
 if (Meteor.isClient) {
-  Template.profile_list.profiles = function () {
-    return Profiles.find();
+  Template.profile.selectedProfile = function () {
+		return Profiles.findOne({/* TODO select profile with param */}, {fields: {_id: 0}});
   };
-
 }
 
 if (Meteor.isServer) {
