@@ -29,5 +29,15 @@
 <template name="profile">
 	{{#if selectedProfile}}
 		<h1>Profil {{selectedProfile.characterName}}</h1>
+		<form class="form-inline" role="form">
+			<div class="form-group">
+				<label class="control-label" for="characterName">Character Name</label>
+				<span data-name="characterName">{{selectedProfile.characterName}}</span>
+			</div>
+		</form>
 	{{/if}}
+</template>
+
+<template name="input">
+	<input type="text" class="form-control" id="{{name}}" name="{{name}}" value="{{value}}" />
 </template>
