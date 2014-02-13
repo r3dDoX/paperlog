@@ -22,10 +22,9 @@ if (Meteor.isClient) {
 
 	Template.createProfile.events({
 		'click button': function(event) {
-			var inputElement = event.target.parentNode.getElementsByTagName('input')[0],
-					characterName = inputElement.value;
+			var inputElement = event.target.parentNode.parentNode.getElementsByTagName('input')[0],
+				characterName = inputElement.value;
 
-			event.preventDefault();
 			inputElement.value = "";
 			inputElement.blur();
 			
