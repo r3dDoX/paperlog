@@ -37,8 +37,7 @@ if (Meteor.isClient) {
 	});
 
   Template.profile.selectedProfile = function () {
-		var selectedProfile = Profiles.findOne({_id: Session.get('selectedProfile')});
-		return selectedProfile;
+		return Profiles.findOne({_id: Session.get('selectedProfile')});
   };
 	
 	Template.profile.events({
@@ -76,6 +75,13 @@ if (Meteor.isClient) {
 			spanElement.style.display = spanElementDisplay;
 		});
 	}
+
+	Meteor.startup(function () {
+		$('#profileTabs a').click(function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+		});
+	});
 }
 
 if (Meteor.isServer) {

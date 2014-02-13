@@ -60,22 +60,23 @@
 
 <template name="profile">
 	{{#if selectedProfile}}
-		<ul class="nav nav-tabs">
+		<ul id="profileTabs" class="nav nav-tabs">
 			<li class="active">
-				<a href="#">Basics</a>
+				<a href="#basics" data-toggle="tab">Basics</a>
 			</li>
 			<li>
-				<a href="#">Talents</a>
+				<a href="#talents" data-toggle="tab">Talents</a>
 			</li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane fade in active">
-				<form class="form-inline" role="form">
-					<div class="form-group">
-						<label class="control-label" for="characterName">Character Name</label>
-						<span data-name="characterName">{{selectedProfile.characterName}}</span>
-					</div>
-				</form>
+			<div class="tab-pane fade in active" id="basics">
+				<div class="form-group">
+					<label class="control-label" for="characterName">Character Name</label>
+					<span data-name="characterName">{{selectedProfile.characterName}}</span>
+				</div>
+			</div>
+			<div class="tab-pane" id="talents">
+
 			</div>
 		</div>
 	{{/if}}
