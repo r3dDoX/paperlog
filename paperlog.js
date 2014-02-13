@@ -26,7 +26,6 @@ if (Meteor.isClient) {
 				characterName = inputElement.value;
 
 			inputElement.value = "";
-			inputElement.blur();
 			
 			if(characterName) {
 				Session.set('selectedProfile', 
@@ -36,13 +35,21 @@ if (Meteor.isClient) {
 		}
 	});
 
-  Template.profile.selectedProfile = function () {
+	Template.profile.selectedProfile = function () {
 		return Profiles.findOne({_id: Session.get('selectedProfile')});
-  };
+	};
 	
 	Template.profile.events({
-		'click span': function(event) {
-			toggleInput(event.target);
+		'change input': function(event) {
+			var inputElement = event.target,
+				name = inputElement.parentNode.getElementsByTagName('label')[0].getAttribute('for');
+
+			if(inputElement.value) {
+				var updateObject = Profiles.findOne({_id: Session.get('selectedProfile')});
+				updateObject[name] = inputElement.value;
+
+				Profiles.update({_id: Session.get('selectedProfile')}, updateObject);
+			}
 		},
 		
 		'submit form': function(event) {
@@ -50,31 +57,6 @@ if (Meteor.isClient) {
 			return false;
 		}
 	});
-	
-	function toggleInput(spanElement) {
-		var value = spanElement.innerHTML,
-				name = spanElement.getAttribute('data-name'),
-				parentNode = spanElement.parentNode,
-				inputElement = undefined,
-				spanElementDisplay = spanElement.style.display;
-		
-		spanElement.style.display = 'none';
-		parentNode.insertAdjacentHTML('beforeend', Template.input({name: name, value: value}));
-		inputElement = parentNode.getElementsByTagName('input')[0];
-		inputElement.focus();
-		
-		inputElement.addEventListener('blur', function(event) {
-			if(inputElement.value) {
-				var updateObject = {};
-				updateObject[name] = inputElement.value;
-
-				Profiles.update({_id: Session.get('selectedProfile')}, updateObject);
-			}
-			
-			parentNode.removeChild(inputElement);
-			spanElement.style.display = spanElementDisplay;
-		});
-	}
 
 	Meteor.startup(function () {
 		$('#profileTabs a').click(function (e) {

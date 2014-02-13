@@ -1,0 +1,7 @@
+<template name="profiles">
+	<div class="list-group">
+		{{#each availableProfiles}}
+			<a href="#" class="list-group-item{{#if isSelectedProfile _id}} active{{/if}}">{{characterName}}</a>
+		{{/each}}
+	</div>
+</template>

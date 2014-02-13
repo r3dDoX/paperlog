@@ -9,19 +9,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">paperlog</a>
-			</div>
-		</div>
-	</nav>
+	{{> navbar}}
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
@@ -37,54 +25,3 @@
 		</div>
 	</div>
 </body>
-
-<template name="profiles">
-	<div class="list-group">
-		{{#each availableProfiles}}
-			<a href="#" class="list-group-item{{#if isSelectedProfile _id}} active{{/if}}">{{characterName}}</a>
-		{{/each}}
-	</div>
-</template>
-
-<template name="createProfile">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Character Name" />
-				<span class="input-group-btn">
-					<button class="btn btn-primary" type="button">
-						<span class="glyphicon glyphicon-plus"></span> Add
-					</button>
-				</span>
-			</div>
-		</div>
-	</div>
-</template>
-
-<template name="profile">
-	{{#if selectedProfile}}
-		<ul id="profileTabs" class="nav nav-tabs">
-			<li class="active">
-				<a href="#basics" data-toggle="tab">Basics</a>
-			</li>
-			<li>
-				<a href="#talents" data-toggle="tab">Talents</a>
-			</li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane fade in active" id="basics">
-				<div class="form-group">
-					<label class="control-label" for="characterName">Character Name</label>
-					<span data-name="characterName">{{selectedProfile.characterName}}</span>
-				</div>
-			</div>
-			<div class="tab-pane" id="talents">
-
-			</div>
-		</div>
-	{{/if}}
-</template>
-
-<template name="input">
-	<input type="text" class="form-control" id="{{name}}" name="{{name}}" value="{{value}}" />
-</template>
