@@ -2,9 +2,38 @@ Profiles = new Meteor.Collection("profiles");
 
 if (Meteor.isClient) {
 
+    Template.navbar.menuElements = function () {
+        return [
+            {text: 'Profiles', pageId: 'pageProfiles'},
+            {text: 'Master', pageId: 'pageMaster'}
+        ];
+    };
+
+    Template.navbar.events({
+        'click a': function (event) {
+            var selectedMenuElement = event.target.getAttribute('data-pageId'),
+                page = $('#' + selectedMenuElement),
+                activePage = $('.page.fadeIn');
+
+            if (page.get(0) !== activePage.get(0)) {
+                Session.set('selectedMenuElement', selectedMenuElement);
+
+                activePage.removeClass('fadeIn').addClass('fadeOut').on('transitionend', function (event) {
+                    $(event.target).removeClass('fadeOut');
+                });
+
+                page.addClass('fadeIn');
+            }
+        }
+    });
+
+    Handlebars.registerHelper("isSelectedMenuElement", function(actualId) {
+		return Session.get('selectedMenuElement') === actualId;
+	});
+
 	Template.profiles.availableProfiles = function() {
 		return Profiles.find({}).fetch();
-	}
+	};
 
 	Handlebars.registerHelper("isSelectedProfile", function(actualId) {
 		return Session.get('selectedProfile') === actualId;
@@ -60,8 +89,8 @@ if (Meteor.isClient) {
 
 	Meteor.startup(function () {
 		$('#profileTabs a').click(function (e) {
-			e.preventDefault()
-			$(this).tab('show')
+			e.preventDefault();
+			$(this).tab('show');
 		});
 	});
 }

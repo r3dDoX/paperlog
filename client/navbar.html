@@ -10,6 +10,15 @@
 				</button>
 				<a class="navbar-brand" href="#">paperlog</a>
 			</div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {{#each menuElements}}
+                        <li class="{{#if isSelectedMenuElement pageId}}active{{/if}}">
+                            <a href="#" data-pageId="{{pageId}}">{{text}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
 		</div>
 	</nav>
 </template>
