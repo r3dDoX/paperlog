@@ -1,32 +1,31 @@
-#pages {
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.pages {
     position: relative;
+    height: 100%;
+    width: 100%;
+
+    overflow-x: hidden;
 
     .page {
         position: absolute;
-        width: 100%;
         height: 100%;
-        opacity: 0;
+        width: 100%;
 
-        -webkit-transition: -webkit-transform .5s ease-in-out, opacity .5s ease-in-out;
+        -webkit-transition: -webkit-transform .5s ease-in-out;
         -webkit-transform: translateX(100%);
 
-        &.fadeIn {
-            -webkit-transform: translateX(0%);
-            opacity: 1;
-        }
-
-        &.fadeOut {
-            -webkit-transform: translateX(-100%);
-        }
-        
         &.left {
             -webkit-transform: translateX(-100%);
         }
-        
+
         &.center {
             -webkit-transform: translateX(0%);
         }
-        
+
         &.right {
             -webkit-transform: translateX(100%);
         }

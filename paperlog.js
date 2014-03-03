@@ -13,16 +13,14 @@ if (Meteor.isClient) {
         'click a': function (event) {
             var selectedMenuElement = event.target.getAttribute('data-pageId'),
                 page = $('#' + selectedMenuElement),
-                activePage = $('.page.fadeIn');
+                fadeOut = (page.hasClass('right') ? 'left' : 'right'),
+                activePage = $('.page.center');
 
             if (page.get(0) !== activePage.get(0)) {
                 Session.set('selectedMenuElement', selectedMenuElement);
 
-                activePage.removeClass('fadeIn').addClass('fadeOut').on('transitionend', function (event) {
-                    $(event.target).removeClass('fadeOut');
-                });
-
-                page.addClass('fadeIn');
+                activePage.removeClass('center').addClass(fadeOut);
+                page.removeClass('left right').addClass('center');
             }
         }
     });
