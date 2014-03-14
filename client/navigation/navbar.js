@@ -1,23 +1,14 @@
 Template.navbar.menuElements = function () {
     return [
-        {text: 'Profiles', pageId: 'pageProfiles'},
-        {text: 'Master', pageId: 'pageMaster'}
+        {text: 'Profiles', pageId: 'profiles'},
+        {text: 'Master', pageId: 'master'}
     ];
 };
 
 Template.navbar.events({
     'click a': function (event) {
-        var selectedMenuElement = event.target.getAttribute('data-pageId'),
-            page = $('#' + selectedMenuElement),
-            fadeOut = (page.hasClass('right') ? 'left' : 'right'),
-            activePage = $('.page.center');
-
-        if (page.get(0) !== activePage.get(0)) {
-            Session.set('selectedMenuElement', selectedMenuElement);
-
-            activePage.removeClass('center').addClass(fadeOut);
-            page.removeClass('left right').addClass('center');
-        }
+        event.preventDefault();
+        Router.navigate("pages/" + event.target.getAttribute('data-pageId'), {trigger: true});
     }
 });
 

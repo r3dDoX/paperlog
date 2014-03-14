@@ -1,5 +1,3 @@
-Profiles = new Meteor.Collection("profiles");
-
 Template.profiles.availableProfiles = function() {
     return Profiles.find({}).fetch();
 };

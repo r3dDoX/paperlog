@@ -8,13 +8,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">paperlog</a>
+				<a class="navbar-brand" href="/">paperlog</a>
 			</div>
             <div class="collapse navbar-collapse" id="collapse">
                 <ul class="nav navbar-nav">
                     {{#each menuElements}}
                         <li class="{{#if isSelectedMenuElement pageId}}active{{/if}}">
-                            <a href="#" data-pageId="{{pageId}}">{{text}}</a>
+                            <a href="/pages/{{pageId}}" data-pageId="{{pageId}}">{{text}}</a>
                         </li>
                     {{/each}}
                 </ul>
