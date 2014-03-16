@@ -36,7 +36,8 @@ Template.profile.selectedProfile = function () {
 };
 
 Template.profile.events({
-    'change input': function(event) {
+    //TODO make buffering function with timeout updating values only if not changed for 500ms i.e.
+    'keyup input': function(event) {
         var inputElement = event.target,
             name = inputElement.parentNode.getElementsByTagName('label')[0].getAttribute('for');
 
