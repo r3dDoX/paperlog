@@ -1,5 +1,3 @@
-window.inputTimers = new Array();
-
 Template.profiles.availableProfiles = function() {
     return Profiles.find({}).fetch();
 };
