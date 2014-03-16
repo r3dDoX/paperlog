@@ -1,3 +1,5 @@
+window.inputTimers = new Array();
+
 Template.profiles.availableProfiles = function() {
     return Profiles.find({}).fetch();
 };
@@ -36,17 +38,21 @@ Template.profile.selectedProfile = function () {
 };
 
 Template.profile.events({
-    //TODO make buffering function with timeout updating values only if not changed for 500ms i.e.
     'keyup input': function(event) {
         var inputElement = event.target,
             name = inputElement.parentNode.getElementsByTagName('label')[0].getAttribute('for');
 
-        if(inputElement.value) {
+        if(typeof window.inputTimers[inputElement.name] !== undefined) {
+            window.clearTimeout(window.inputTimers[inputElement.name]);
+        }
+
+        window.inputTimers[inputElement.name] = setTimeout(function() {
             var updateObject = Profiles.findOne({_id: Session.get('selectedProfile')});
             updateObject[name] = inputElement.value;
 
             Profiles.update({_id: Session.get('selectedProfile')}, updateObject);
-        }
+            delete window.inputTimers[inputElement.name];
+        }, 500);
     },
 
     'submit form': function(event) {
