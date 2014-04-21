@@ -2,7 +2,7 @@ Template.profiles.availableProfiles = function() {
     return Profiles.find({}).fetch();
 };
 
-Handlebars.registerHelper("isSelectedProfile", function(actualId) {
+UI.registerHelper("isSelectedProfile", function(actualId) {
     return Session.get('selectedProfile') === actualId;
 });
 
